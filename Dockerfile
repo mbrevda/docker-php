@@ -12,7 +12,8 @@ RUN yum install -y \
     php56w-mbstring \
     php56w-pecl-xdebug \
     php56w-xml \
-    vim
+    vim \
+    git
 
 #set time zone
 RUN ln -sf /usr/share/zoneinfo/GMT /etc/localtime
