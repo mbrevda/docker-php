@@ -10,7 +10,6 @@ RUN yum install -y \
     php56w-opcache \
     php56w-mysql \
     php56w-mbstring \
-    php56w-pecl-xdebug \
     php56w-xml \
     vim \
     git
