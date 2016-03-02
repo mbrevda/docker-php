@@ -1,18 +1,28 @@
-FROM centos:latest
+FROM php
 
 MAINTAINER mbrevda@gmail.com
 
-RUN rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm ;\
-    rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+COPY config/php.ini /usr/local/etc/php/
 
-RUN yum install -y \
-    php56w \
-    php56w-opcache \
-    php56w-mysql \
-    php56w-mbstring \
-    php56w-xml \
-    vim \
-    git
+RUN apt-get update && apt-get install -y \
+    libxml2-dev \
+    libmcrypt-dev \
+    libzip-dev \
+    # for editing files when testing in development
+    vim \   
+    # for composer to download stuff
+    git \     
+    # for deployments
+    ssh \     
+    && rm -rf /var/lib/apt/lists/*
+
+RUN docker-php-ext-install \
+    mbstring \
+    mcrypt \
+    opcache \
+    pdo_mysql \
+    xml \
+    zip
 
 #set time zone
 RUN ln -sf /usr/share/zoneinfo/GMT /etc/localtime
