@@ -1,4 +1,4 @@
-FROM php
+FROM php:7-apache
 
 MAINTAINER mbrevda@gmail.com
 
